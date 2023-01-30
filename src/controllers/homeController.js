@@ -19,8 +19,8 @@ let getHomePage = async (req, res) => {
 
 let getCrud = async (req, res) => {
     try {
-        await res.render(`crud.ejs`)
-        // console.log(`--------------`)
+        await res.render(`create-crud.ejs`)
+        // console.log(`--------------`) check data
         // console.log(data)
         // console.log(`--------------`)
         // return res.render(`homePage.ejs`, {
@@ -36,8 +36,19 @@ let postCrud = async (req, res) => {
     return res.send(`helo postCrud`)
 }
 
+let readCrud = async (req, res) => {
+    let data = await crudServices.getAllUsers()
+    console.log(`-------------`)
+    console.log(data)
+    console.log(`-------------`)
+    return res.render(`read-crud.ejs`, {
+        dataTable: data
+    })
+}
+
 module.exports = {
     getHomePage: getHomePage,
     getCrud: getCrud,
     postCrud: postCrud,
+    readCrud: readCrud,
 }
