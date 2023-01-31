@@ -12,6 +12,7 @@ let initWebRoutes = (app) => {
     router.get('/read-crud', homeController.readCrud)
     router.get('/update-crud', homeController.updateCrud)
     router.post('/put-crud', homeController.putCrud)
+    router.get('/delete-crud', homeController.deleteCrud)
 
 
     return app.use("/", router)

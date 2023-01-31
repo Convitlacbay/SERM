@@ -70,6 +70,17 @@ let putCrud = async (req, res) => {
     })
 }
 
+let deleteCrud = async (req, res) => {
+    let userId = req.query.id
+    if (userId) {
+        await crudServices.deleteUserById(userId)
+        return res.send(`detele user successfully`)
+    }
+    else {
+        return res.send(`datele user not found`)
+    }
+}
+
 
 module.exports = {
     getHomePage: getHomePage,
@@ -78,4 +89,5 @@ module.exports = {
     readCrud: readCrud,
     updateCrud: updateCrud,
     putCrud: putCrud,
+    deleteCrud: deleteCrud,
 }
