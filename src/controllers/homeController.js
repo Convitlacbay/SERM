@@ -30,10 +30,10 @@ let getCrud = async (req, res) => {
     }
 }
 
-let postCrud = async (req, res) => {
+let createCrud = async (req, res) => {
     let mes = await crudServices.createNewUser(req.body)
     console.log(mes)
-    return res.send(`helo postCrud`)
+    return res.send(`helo createCrud`)
 }
 
 let readCrud = async (req, res) => {
@@ -46,9 +46,36 @@ let readCrud = async (req, res) => {
     })
 }
 
+let updateCrud = async (req, res) => {
+    let userId = req.query.id
+    if (userId) {
+        let userData = await crudServices.getUserById(userId)
+        console.log(`-------------`)
+        console.log(userData)
+        console.log(`-------------`)
+        return res.render(`update-crud.ejs`, {
+            userData: userData //gan gia tri userData phai cho userData trai cho view
+        })
+    }
+    else {
+
+    }
+}
+
+let putCrud = async (req, res) => {
+    let data = req.body
+    let allUsers = await crudServices.updateUserData(data)
+    return res.render(`read-crud.ejs`, {
+        dataTable: allUsers
+    })
+}
+
+
 module.exports = {
     getHomePage: getHomePage,
     getCrud: getCrud,
-    postCrud: postCrud,
+    createCrud: createCrud,
     readCrud: readCrud,
+    updateCrud: updateCrud,
+    putCrud: putCrud,
 }
