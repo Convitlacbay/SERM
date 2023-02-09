@@ -10,8 +10,7 @@ require('dotenv').config()
 
 
 let app = express()
-// app.use(cors(process.env.REACT_URL))
-
+app.use(cors({ credentials: true, origin: true }));// fix cors
 
 //config app
 
